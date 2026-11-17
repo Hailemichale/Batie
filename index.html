@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Batie: free, legal links worth keeping</title>
+<style>
+:root{--bg:#f4f5f0;--ink:#1b2320;--mute:#5b6660;--line:#d6dacf;--panel:#fff;--g:#2c6b3f;--y:#b8860b;--r:#b83a2e;--gs:#e3efe5;--ys:#f6ecd0;--rs:#f6e0dc;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121715;--ink:#e8ece6;--mute:#9aa59e;--line:#2a332f;--panel:#1a211e;--g:#6fc388;--y:#e0b64a;--r:#ee7f72;--gs:#1b2d21;--ys:#2e2813;--rs:#321c19}}
+:root[data-theme="dark"]{--bg:#121715;--ink:#e8ece6;--mute:#9aa59e;--line:#2a332f;--panel:#1a211e;--g:#6fc388;--y:#e0b64a;--r:#ee7f72;--gs:#1b2d21;--ys:#2e2813;--rs:#321c19}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Ethiopic","Noto Sans KR",sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{padding:56px 0 28px}
+.weave{height:18px;border-radius:2px;margin-bottom:28px;background:
+repeating-linear-gradient(45deg,var(--g) 0 6px,transparent 6px 12px),
+repeating-linear-gradient(-45deg,var(--y) 0 6px,transparent 6px 12px),var(--bg);background-blend-mode:normal;opacity:.9}
+h1{font:700 clamp(3rem,11vw,6rem)/.95 Georgia,"Iowan Old Style",serif;letter-spacing:-.03em;margin:0 0 14px}
+.sub{font-size:1.15rem;color:var(--mute);max-width:46ch;margin:0 0 26px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:12px 0;z-index:5}
+input{flex:1 1 220px;font:inherit;padding:12px 14px;border:2px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;padding:10px 14px;border:2px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+button[aria-pressed="true"]{border-color:var(--ink);font-weight:600}
+section{margin:40px 0;border-left:8px solid var(--c);padding-left:20px}
+section h2{font:700 1.9rem/1.1 Georgia,serif;margin:0 0 4px}
+section>p{margin:0 0 14px;color:var(--mute)}
+ul{list-style:none;margin:0;padding:0}
+li a{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;border-radius:6px}
+li a:hover{background:var(--s)}
+li b{font-weight:600}
+li span{color:var(--mute);grid-column:1}
+li small{grid-row:1/3;grid-column:2;align-self:center;color:var(--mute);font-size:.8rem}
+.note{background:var(--ys);padding:12px 14px;border-radius:8px;margin-top:14px;font-size:.95rem}
+.empty{display:none;padding:30px 0;color:var(--mute)}
+footer{padding:30px 0 60px;color:var(--mute);font-size:.9rem}
+@media(max-width:520px){li small{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="weave" aria-hidden="true"></div>
+<h1>Batie</h1>
+<p class="sub">One dish to feed everyone: free and legal media, Korean learning, and remote work. Every link is an official source.</p>
+</header>
+<div class="tools">
+<input id="q" type="search" placeholder="Search links, e.g. audiobooks, translate, freelance" aria-label="Search links">
+<div class="chips" id="chips"></div>
+</div>
+<main id="main"></main>
+<p class="empty" id="empty">No links match that search. Try a shorter word, or pick All.</p>
+<footer>Links open the official sites. Availability and free tiers can change by country, so check each site before you rely on it.</footer>
+</div>
+<script>
+var D=[
+{id:"media",name:"Free & legal media",tag:"Media",c:"--g",s:"--gs",d:"Films, books, music and games that are free because the owners say so, or because they are in the public domain.",items:[
+["Internet Archive","https://archive.org","Free films, books, audio and old web pages"],
+["Project Gutenberg","https://www.gutenberg.org","Public-domain ebooks"],
+["Standard Ebooks","https://standardebooks.org","Carefully formatted public-domain books"],
+["LibriVox","https://librivox.org","Free audiobooks read by volunteers"],
+["Tubi","https://tubitv.com","Free movies and TV with ads"],
+["Pluto TV","https://pluto.tv","Free live channels and on-demand shows"],
+["YouTube Movies","https://www.youtube.com/movies","Free with ads and paid rentals, clearly labeled"],
+["Kanopy","https://www.kanopy.com","Films free with a library or university login"],
+["Free Music Archive","https://freemusicarchive.org","Music shared under open licenses"],
+["Jamendo","https://www.jamendo.com","Independent artists, free to stream"],
+["itch.io free games","https://itch.io/games/free","Indie games from their makers, no charge"],
+["Wikimedia Commons","https://commons.wikimedia.org","Free images, video and sound"],
+["Openverse","https://openverse.org","Search openly licensed images and audio"]]},
+{id:"korean",name:"Korean learning & culture",tag:"Korean",c:"--r",s:"--rs",d:"한국어 learning tools, official exams, translators, and legal ways to watch Korean drama.",items:[
+["Talk To Me In Korean","https://talktomeinkorean.com","Free lessons from beginner to advanced"],
+["How to Study Korean","https://www.howtostudykorean.com","Free grammar course, unit by unit"],
+["King Sejong Institute","https://sejong.korean.go.kr","Official Korean language and culture courses"],
+["TOPIK","https://www.topik.go.kr","Official Test of Proficiency in Korean"],
+["Naver Dictionary","https://en.dict.naver.com","Korean-English dictionary with example sentences"],
+["Papago","https://papago.naver.com","Naver’s translator, strong for Korean"],
+["Google Translate","https://translate.google.com","Korean, English and Amharic in one tool"],
+["Anki","https://apps.ankiweb.net","Spaced-repetition flashcards for vocabulary"],
+["Duolingo","https://www.duolingo.com","Daily Korean practice, free tier"],
+["Viki","https://www.viki.com","Korean dramas with fan subtitles, free tier"]]},
+{id:"work",name:"Remote work",tag:"Work",c:"--y",s:"--ys",d:"Platforms for virtual assistants, translators and writers, plus ways to get paid and build skills.",items:[
+["Upwork","https://www.upwork.com","Freelance jobs: admin, writing, translation"],
+["Fiverr","https://www.fiverr.com","Sell fixed-price services such as translation"],
+["Freelancer","https://www.freelancer.com","Bid on projects worldwide"],
+["ProZ","https://www.proz.com","Marketplace and community for translators"],
+["TranslatorsCafe","https://www.translatorscafe.com","Translator directory and job board"],
+["Remote OK","https://remoteok.com","Remote job listings, filter by role"],
+["We Work Remotely","https://weworkremotely.com","Large remote job board"],
+["Contra","https://contra.com","Free portfolio page for independents"],
+["Payoneer","https://www.payoneer.com","Receive client payments; check Ethiopia support"],
+["Google Career Certificates","https://grow.google/certificates","Job-ready courses, including project management"],
+["Coursera","https://www.coursera.org","Courses, with financial aid available"],
+["Medium","https://medium.com","Publish writing and build a content portfolio"]],
+note:"Never pay a fee to get a job, and keep every client conversation on the platform you found them on."}
+];
+var main=document.getElementById("main"),chips=document.getElementById("chips"),q=document.getElementById("q"),empty=document.getElementById("empty"),cur="all";
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+main.innerHTML=D.map(function(s){return '<section id="'+s.id+'" style="--c:var('+s.c+');--s:var('+s.s+')"><h2>'+s.name+'</h2><p>'+s.d+'</p><ul>'+s.items.map(function(i){var h=i[1].replace(/^https?:\/\/(www\.)?/,"").replace(/\/.*/,"");return '<li data-t="'+esc((i[0]+" "+i[2]+" "+h).toLowerCase())+'"><a href="'+i[1]+'" target="_blank" rel="noopener noreferrer"><b>'+esc(i[0])+'</b><span>'+esc(i[2])+'</span><small>'+h+'</small></a></li>'}).join("")+'</ul>'+(s.note?'<div class="note">'+s.note+'</div>':"")+'</section>'}).join("");
+[["all","All"]].concat(D.map(function(s){return[s.id,s.tag]})).forEach(function(c){var b=document.createElement("button");b.textContent=c[1];b.setAttribute("aria-pressed",c[0]=="all");b.onclick=function(){cur=c[0];Array.prototype.forEach.call(chips.children,function(x){x.setAttribute("aria-pressed",x===b)});f()};chips.appendChild(b)});
+function f(){var t=q.value.trim().toLowerCase(),n=0;Array.prototype.forEach.call(main.children,function(s){var show=cur=="all"||cur==s.id,v=0;Array.prototype.forEach.call(s.querySelectorAll("li"),function(l){var m=show&&l.dataset.t.indexOf(t)>-1;l.style.display=m?"":"none";if(m)v++});s.style.display=v?"":"none";n+=v});empty.style.display=n?"none":"block"}
+q.addEventListener("input",f);
+</script>
+</body>
+</html>
